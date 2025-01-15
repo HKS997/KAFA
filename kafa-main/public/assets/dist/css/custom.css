@@ -1,0 +1,32 @@
+/* public/css/custom.css */
+
+/* Custom styles */
+.form-floating .dropdown-toggle {
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+}
+
+.form-floating > .form-control,
+.form-floating > .dropdown-toggle,
+.form-floating > label {
+    padding: 1rem 0.75rem;
+}
+
+.form-floating > label {
+    left: 0.75rem;
+}
+
+.bold-label {
+    font-weight: bold;
+}
+
+.custom-width {
+    max-width: 600px;
+    width: 100%;
+}
+
+body {
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

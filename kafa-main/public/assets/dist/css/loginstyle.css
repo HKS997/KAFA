@@ -1,0 +1,76 @@
+body {
+    background: linear-gradient(to bottom, #53AB51, #4299FE);
+    /* Example gradient */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+#login{
+    font-family: 'Jomolhari',serif;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+    font-size: 90px;
+}
+
+#register{
+    font-family: 'Jomolhari',serif;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+    font-size: 70px;
+}
+
+.login-link {
+    text-decoration: underline;
+    color: inherit; /* Maintain the current color */
+    cursor: pointer;
+    color: white;
+}
+
+.login-link:hover {
+    text-decoration: none; /* Optionally remove underline on hover */
+    color: #eeff00;
+}
+
+
+#submit-button {
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    font-family: 'Inter', sans-serif;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add this line for the shadow */
+}
+
+#submit-button:hover {
+    background-color: #f1a500; /* Darker shade for hover effect */
+    color: white; /* Ensure the text color stays white on hover */
+}
+
+#custom-register-btn {
+    background-color: #0CFFE2;
+    color: white;
+    border: none; /* Optional: to remove the default border */
+    font-family: 'Inter', sans-serif;
+    border-radius: 50px;
+    -webkit-text-stroke: 0.2px rgb(0, 0, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add this line for the shadow */
+}
+
+#custom-register-btn:hover {
+    background-color: #0b7f9c; /* Darker shade for hover effect */
+    color: white; /* Ensure the text color stays white on hover */
+}
+
+
+.register-container {
+    display: flex;
+    align-items: center;
+}
+
+.no-account-text {
+    margin-right: 10px; /* Adjust the spacing as needed */
+    color: white;
+}
