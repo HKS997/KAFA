@@ -108,20 +108,20 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const dropdownItems = document.querySelectorAll('.dropdown-item');
-            const dropdownButton = document.getElementById('dropdownMenuButton1');
-            const roleInput = document.getElementById('role');
+        document.addEventListener('DOMContentLoaded', () => {
+            const alerts = document.querySelectorAll('.alert');
 
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const value = this.getAttribute('data-value');
-                    const text = this.textContent;
+            // Automatically hide alerts after 5 seconds
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.style.transition = 'opacity 0.5s ease';
+                    alert.style.opacity = '0';
 
-                    dropdownButton.textContent = text;
-                    roleInput.value = value;
-                });
+                    // Remove alert after fade-out
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 500); // Match the CSS transition duration
+                }, 5000); // Time before fade starts
             });
         });
     </script>
