@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
 
             <div class="container text-center mb-4">
-                <h2 id=login>{{ __('Login') }}</h2>
+                <h2 id="login">{{ __('Login') }}</h2>
             </div>
 
             @if (session('error'))
@@ -42,6 +42,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                            <small>Password must be at least 11 characters long, contain an uppercase letter, a number, and a special character.</small>
                         </div>
 
                         <div class="form-floating mb-3">
@@ -104,6 +105,16 @@
                     roleInput.value = value;
                 });
             });
+
+            // Auto-hide alerts after 5 seconds
+            const alerts = document.querySelectorAll('.alert');
+            setTimeout(() => {
+                alerts.forEach(alert => {
+                    alert.style.transition = 'opacity 0.5s ease';
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500);
+                });
+            }, 5000); // 5000ms = 5 seconds
         });
     </script>
 @endsection
