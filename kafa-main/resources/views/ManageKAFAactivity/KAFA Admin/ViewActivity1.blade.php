@@ -3,7 +3,7 @@
 @extends('ManageRegistration.Kafa Admin.template')
 
 @section('content')
-
+<!--test-->
     <!-- Search Bar -->
     <div class="input-group mb-3">
         <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search"
