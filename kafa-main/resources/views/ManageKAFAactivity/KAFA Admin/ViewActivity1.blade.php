@@ -3,15 +3,22 @@
 @extends('ManageRegistration.Kafa Admin.template')
 
 @section('content')
-<!--test-->
+<h2>Search Activities</h2>
+
     <!-- Search Bar -->
+    <form method="GET" action="{{ route('kafa.activities.index') }}">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search"
-            aria-describedby="basic-addon2">
+        <input 
+            type="text" 
+            name="search_term" 
+            class="form-control" 
+            placeholder="Search by name or date (YYYY-MM-DD)" 
+            value="{{ request('search_term') }}">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary btn-custom" type="button" onclick="searchActivity()">Search</button>
+            <button class="btn btn-outline-secondary btn-custom" type="submit">Search</button>
         </div>
     </div>
+</form>
 
     <!-- List of Activities -->
     <div class="list-group" id="activityList">

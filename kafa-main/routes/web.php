@@ -57,7 +57,22 @@ Route::delete('/results/delete/{studentIC}/{result_id}', [ManageResultController
 Route::get('result/{id}/delete', [ManageResultController::class, 'showDeleteForm'])->name('results.showDeleteForm');
 
 
+// Teacher Routes
+Route::get('/teacher/activities', [ManageActivityController::class, 'indexTeacher'])->name('teacher.activities.index');
+Route::get('/teacher/activities/{id}', [ManageActivityController::class, 'show'])->name('teacher.activities.show');
 
+// Parent Routes
+Route::get('/parent/activities', [ManageActivityController::class, 'indexParent'])->name('parent.activities.index');
+Route::get('/parent/activities/{id}', [ManageActivityController::class, 'Parentshow'])->name('parent.activities.show');
+
+// Admin Routes
+Route::get('/kafa/activities', [ManageActivityController::class, 'indexAdmin'])->name('kafa.activities.index');
+Route::get('/kafa/activities/{id}', [ManageActivityController::class, 'KAFAshow'])->name('kafa.activities.show');
+
+
+// MUIP Routes
+Route::get('/muip/activities', [ManageActivityController::class, 'indexMUIP'])->name('muip.activities.index');
+Route::get('/muip/activities/{id}', [ManageActivityController::class, 'MUIPshow'])->name('muip.activities.show');
 
 
 

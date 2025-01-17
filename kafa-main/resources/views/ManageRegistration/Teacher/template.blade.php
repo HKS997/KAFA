@@ -40,7 +40,7 @@
                                 aria-controls="pills-home" aria-selected="true">Home</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-profile-tab" href="{{ route('activities.search') }}"
+                            <a class="nav-link" id="pills-profile-tab" href="{{ route('teacher.activities.index') }}"
                                 role="tab" aria-controls="pills-profile" aria-selected="false">Activity</a>
                         </li>
                         <li class="nav-item" role="presentation">

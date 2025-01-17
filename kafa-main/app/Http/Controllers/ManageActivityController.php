@@ -10,28 +10,78 @@ class ManageActivityController extends Controller
 {
 
 
-    public function index()
-    {
-        $activities = Activity::all();
-        return view('ManageKAFAactivity.Teacher.ViewActivity1', compact('activities'));
-    }
-    public function KAFAindex()
-    {
-        $activities = Activity::all();
-        return view('ManageKAFAactivity.KAFA Admin.ViewActivity1', compact('activities'));
-    }
+  public function indexTeacher(Request $request)
+  {
+      $searchTerm = $request->input('search_term');
+      $query = Activity::query();
+  
+      if ($searchTerm) {
+          $query->where('activityName', 'LIKE', '%' . $searchTerm . '%');
+          if (strtotime($searchTerm)) {
+              $query->orWhereDate('activityDate', $searchTerm);
+          }
+      }
+  
+      $activities = $query->get();
+  
+      return view('ManageKAFAactivity.Teacher.ViewActivity1', compact('activities', 'searchTerm'));
+  }
+  
+  
+  public function indexAdmin(Request $request)
+  {
+      $searchTerm = $request->input('search_term');
+      $query = Activity::query();
+  
+      if ($searchTerm) {
+          $query->where('activityName', 'LIKE', '%' . $searchTerm . '%');
+          if (strtotime($searchTerm)) {
+              $query->orWhereDate('activityDate', $searchTerm);
+          }
+      }
+  
+      $activities = $query->get();
+  
+      return view('ManageKAFAactivity.kafa Admin.ViewActivity1', compact('activities', 'searchTerm'));
+  }
+  
 
-    public function MUIPindex()
-    {
-        $activities = Activity::all();
-        return view('ManageKAFAactivity.MUIP Admin.ViewActivity1', compact('activities'));
-    }
+  public function indexMUIP(Request $request)
+  {
+      $searchTerm = $request->input('search_term');
+      $query = Activity::query();
+  
+      if ($searchTerm) {
+          $query->where('activityName', 'LIKE', '%' . $searchTerm . '%');
+          if (strtotime($searchTerm)) {
+              $query->orWhereDate('activityDate', $searchTerm);
+          }
+      }
+  
+      $activities = $query->get();
+  
+      return view('ManageKAFAactivity.muip admin.ViewActivity1', compact('activities', 'searchTerm'));
+  }
+  
 
-    public function Parentindex()
+    public function indexParent(Request $request)
     {
-        $activities = Activity::all();
-        return view('ManageKAFAactivity.Parent.ViewActivity1', compact('activities'));
+        $searchTerm = $request->input('search_term');
+        $query = Activity::query();
+    
+        if ($searchTerm) {
+            $query->where('activityName', 'LIKE', '%' . $searchTerm . '%');
+            if (strtotime($searchTerm)) {
+                $query->orWhereDate('activityDate', $searchTerm);
+            }
+        }
+    
+        $activities = $query->get();
+    
+        return view('ManageKAFAactivity.Parent.ViewActivity1', compact('activities', 'searchTerm'));
     }
+    
+    
     public function show(string $id)
     {
         //

@@ -4,13 +4,19 @@
     <div class="container mt-5">
         <h2>Search Activities</h2>
 
-        <!-- Search Bar -->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="searchInput" placeholder="Search for activities..." aria-label="Search" aria-describedby="basic-addon2" value="{{ request()->input('search_term') }}">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary btn-custom" type="button" onclick="searchActivities()">Search</button>
+        <form method="GET" action="{{ route('teacher.activities.index') }}">
+            <div class="input-group mb-3">
+                <input 
+                    type="text" 
+                    name="search_term" 
+                    class="form-control" 
+                    placeholder="Search by name or date (YYYY-MM-DD)" 
+                    value="{{ request('search_term') }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary btn-custom" type="submit">Search</button>
+                </div>
             </div>
-        </div>
+        </form>
 
         <!-- Search Results -->
         <h2>Search Results:</h2>
@@ -20,8 +26,10 @@
             @else
                 @foreach ($activities as $activity)
                     <a href="{{ route('activities.show', $activity->id) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        {{ $activity->activityName }}
-                        <span class="badge badge-custom">{{ $activity->status }}</span>
+                        {{ $activity->activityName }} ({{ $activity->activityDate }})
+                        <span class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">
+                            {{ $activity->status }}
+                        </span>
                     </a>
                 @endforeach
             @endif
@@ -56,6 +64,8 @@
         }
     </style>
 
+
+
     <script>
         function searchActivities() {
             var searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -81,5 +91,34 @@
                 notFoundAlert.style.display = "none";
             }
         }
+    </script>
+
+      <script>
+public function index(Request $request)
+{
+    $searchTerm = $request->input('search_term');
+    $query = Activity::query();
+
+    if ($searchTerm) {
+        $query->where('activityName', 'LIKE', '%' . $searchTerm . '%');
+
+        // Check if searchTerm is a valid date format
+        if (strtotime($searchTerm)) {
+            $query->orWhereDate('activityDate', $searchTerm);
+        }
+    }
+
+    $activities = $query->get();
+
+    return view('ManageKAFAactivity.Teacher.ViewActivity1', compact('activities', 'searchTerm'));
+}
+
+    // Debugging: Output the search term and results
+    dd(['search_term' => $searchTerm, 'activities' => $activities]);
+
+    // Return to the view
+    return view('ManageKAFAactivity.Teacher.ViewActivity1', compact('activities', 'searchTerm'));
+}
+
     </script>
 @endsection

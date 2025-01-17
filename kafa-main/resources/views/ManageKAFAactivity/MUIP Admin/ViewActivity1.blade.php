@@ -1,33 +1,44 @@
+
 <!-- resources/views/ManageKAFAactivity/Teacher/ViewActivity1.blade.php -->
 
-@extends('ManageRegistration.Muip Admin.template')
+@extends('ManageRegistration.Parent.template')
 
 @section('content')
 
     <!-- Search Bar -->
+    <h2>Search Activities</h2>
+
+<form method="GET" action="{{ route('parent.activities.index') }}">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" id="searchInput" placeholder="Search..." aria-label="Search"
-            aria-describedby="basic-addon2">
+        <input 
+            type="text" 
+            name="search_term" 
+            class="form-control" 
+            placeholder="Search by name or date (YYYY-MM-DD)" 
+            value="{{ request('search_term') }}">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary btn-custom" type="button" onclick="searchActivity()">Search</button>
+            <button class="btn btn-outline-secondary btn-custom" type="submit">Search</button>
         </div>
     </div>
+</form>
 
-    <!-- List of Activities -->
-    <div class="list-group" id="activityList">
+<!-- Search Results -->
+<h2>Search Results:</h2>
+<div class="list-group" id="activityList">
+    @if ($activities->isEmpty())
+        <p>No activities found.</p>
+    @else
         @foreach ($activities as $activity)
-            <button type="button"
-                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                onclick="window.location='{{ route('MUIPadmin.activities.show', $activity->id) }}'">
-                <span>{{ $activity->activityName }}</span>
-                <span
-                    class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">
+            <a href="{{ route('activities.show', $activity->id) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                {{ $activity->activityName }} ({{ $activity->activityDate }})
+                <span class="badge badge-custom {{ $activity->status == 'Ongoing' ? 'badge-warning' : 'badge-success' }} text-dark">
                     {{ $activity->status }}
                 </span>
-            </button>
+            </a>
         @endforeach
+    @endif
+</div>
 
-    </div>
 
     <!-- Alert for Activity Not Available -->
     <div class="alert alert-danger mt-3" role="alert" id="notFoundAlert" style="display: none;">

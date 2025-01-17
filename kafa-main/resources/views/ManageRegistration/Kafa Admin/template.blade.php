@@ -44,7 +44,7 @@
                     <a href="#" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Fee</span>
                     </a>
-                    <a href="{{route('KAFAadmin.activities.search')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
+                    <a href="{{route('kafa.activities.index')}}" class="list-group-item list-group-item-action py-2 ripple text-center ">
                         <span>Activity</span></a>
                 </div>
             </div>
